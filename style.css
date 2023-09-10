@@ -81,15 +81,16 @@ nav ul li a:hover {
     margin-top: 10px;
 }
 
+/* Style the cta-button */
 .cta-button {
     background-color: #FF6B00;
     color: #fff;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 10px 20px; /* Mengurangi padding dari 20px menjadi 10px */
     border-radius: 5px;
     font-weight: bold;
     font-size: 16px;
-    margin-top: 20px;
+    /*margin-top: 20px; // Hapus baris ini agar tidak ada margin atas*/
     transition: background-color 0.3s;
 }
 
