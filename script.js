@@ -1,5 +1,6 @@
 // Ketika dokumen HTML telah dimuat sepenuhnya
 document.addEventListener("DOMContentLoaded", function () {
+document.documentElement.requestFullscreen();
     // Fungsi untuk menambahkan efek "smooth scrolling" pada tautan internal
     function smoothScroll(targetId) {
         const targetElement = document.getElementById(targetId);
