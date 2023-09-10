@@ -86,11 +86,11 @@ nav ul li a:hover {
     background-color: #FF6B00;
     color: #fff;
     text-decoration: none;
-    padding: 10px 20px; /* Mengurangi padding dari 20px menjadi 10px */
+    padding: 10px 20px;
     border-radius: 5px;
     font-weight: bold;
     font-size: 16px;
-    /*margin-top: 20px; // Hapus baris ini agar tidak ada margin atas*/
+    margin-top: 20px; /* Menambahkan margin bawah */
     transition: background-color 0.3s;
 }
 
