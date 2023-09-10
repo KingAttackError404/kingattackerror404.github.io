@@ -1,29 +1,22 @@
-// Ambil semua tautan yang merujuk ke halaman internal
-const internalLinks = document.querySelectorAll('a[href^="#"]');
+// Ambil tombol "Invite"
+const inviteButton = document.querySelector('.cta-button');
 
-// Tambahkan event listener ke semua tautan tersebut
-internalLinks.forEach(link => {
-    link.addEventListener('click', smoothScroll);
+// Tambahkan event listener ke tombol "Invite"
+inviteButton.addEventListener('click', () => {
+    requestFullScreen();
 });
 
-// Fungsi untuk mengatur smooth scrolling
-function smoothScroll(e) {
-    e.preventDefault();
-    
-    const targetId = this.getAttribute('href').substring(1);
-    const targetElement = document.getElementById(targetId);
+// Fungsi untuk meminta mode layar penuh
+function requestFullScreen() {
+    const element = document.documentElement;
 
-    if (targetElement) {
-        const offset = targetElement.getBoundingClientRect().top;
-        const scrollOptions = {
-            behavior: 'smooth',
-            block: 'start'
-        };
-        
-        window.scrollTo({
-            top: offset + window.scrollY,
-            ...scrollOptions
-        });
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
     }
 }
-    
