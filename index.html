@@ -136,12 +136,9 @@
             cursor: pointer;
         }
 
-        /* Logo speaker musik */
+        /* Emoji speaker musik */
         .music-icon {
-            width: 50px;
-            height: 50px;
-            background-image: url('https://image-url.com/speaker-icon.png'); /* Ganti URL gambar dengan URL gambar ikon speaker */
-            background-size: cover;
+            font-size: 50px;
             cursor: pointer;
         }
         
@@ -154,23 +151,20 @@
             transform: translate(-50%, -50%);
         }
 
-        /* Logo speaker saat musik aktif */
+        /* Emoji speaker saat musik aktif */
         .music-active {
             display: none;
             position: absolute;
             top: 10px;
             right: 10px;
-            width: 30px;
-            height: 30px;
-            background-image: url('https://image-url.com/speaker-active.png'); /* Ganti URL gambar dengan URL gambar ikon speaker aktif */
-            background-size: cover;
+            font-size: 30px;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <div class="music-active" id="musicActive"></div> <!-- Logo speaker saat musik aktif -->
-    <div class="music-icon" id="musicIcon" onclick="toggleMusic()"></div> <!-- Ikon speaker musik -->
+    <div class="music-active" id="musicActive"></div> <!-- Emoji speaker saat musik aktif -->
+    <div class="music-icon" id="musicIcon" onclick="toggleMusic()">🔇</div> <!-- Emoji speaker musik -->
     <div class="music-permission" id="musicPermission">
         <button onclick="enableMusic()">Enable Music</button>
     </div>
@@ -198,7 +192,10 @@
         <div class="centered-text">
             <h2>Welcome to</h2>
             <h1>Killua Bot</h1>
-            <p>Killua Bot is a gaming moderation and tracking bot designed to enhance your gaming experience. With advanced features and real-time analytics, our bot ensures a seamless and secure gaming environment.</p>
+            <ul>
+                <li>Killua Bot is a gaming moderation and tracking bot designed to enhance your gaming experience.</li>
+                <li>With advanced features and real-time analytics, our bot ensures a seamless and secure gaming environment.</li>
+            </ul>
             
             <!-- Tautan undangan bot -->
             <div class="invite-link">
@@ -215,6 +212,8 @@
 
             var backgroundMusic = document.getElementById("backgroundMusic");
             backgroundMusic.play(); // Mulai pemutaran musik
+            var musicIcon = document.getElementById("musicIcon");
+            musicIcon.innerText = "🔊"; // Mengganti emoji ke speaker aktif
         }
 
         // Fungsi untuk memainkan atau menghentikan musik
@@ -227,12 +226,12 @@
             if (backgroundMusic.paused) {
                 backgroundMusic.play(); // Memainkan musik
                 musicPermission.style.display = "none"; // Menyembunyikan perizinan
-                musicIcon.style.display = "none"; // Menyembunyikan ikon speaker
-                musicActive.style.display = "block"; // Menampilkan ikon speaker aktif
+                musicIcon.innerText = "🔊"; // Mengganti emoji ke speaker aktif
+                musicActive.style.display = "none"; // Menyembunyikan emoji speaker aktif
             } else {
                 backgroundMusic.pause(); // Menghentikan musik
-                musicIcon.style.display = "block"; // Menampilkan ikon speaker
-                musicActive.style.display = "none"; // Menyembunyikan ikon speaker aktif
+                musicIcon.innerText = "🔇"; // Mengganti emoji ke speaker non-aktif
+                musicActive.style.display = "block"; // Menampilkan emoji speaker aktif
             }
         }
 
@@ -243,4 +242,5 @@
         };
     </script>
 </body>
-</html>
+                                                       </html>
+    
