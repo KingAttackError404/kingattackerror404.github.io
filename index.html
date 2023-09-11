@@ -23,10 +23,12 @@
             background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
             text-align: center;
+            position: relative; /* Menambahkan posisi relatif untuk header */
         }
 
         header h1 {
             font-size: 36px;
+            margin: 0; /* Menghapus margin atas dan bawah */
         }
 
         /* Navigasi */
@@ -34,6 +36,10 @@
             list-style-type: none;
             padding: 0;
             text-align: center;
+            position: absolute; /* Menambahkan posisi absolut untuk menu */
+            top: 50%; /* Menempatkan menu di tengah vertikal */
+            left: 50%; /* Menempatkan menu di tengah horizontal */
+            transform: translate(-50%, -50%); /* Pusatkan menu */
         }
 
         nav ul li {
@@ -90,7 +96,7 @@
             max-width: 800px; /* Mengatur lebar maksimum teks */
             margin: 0 auto; /* Membuat teks menjadi rata tengah */
         }
-        
+
         /* Tautan undangan bot */
         .invite-link {
             text-align: center;
@@ -110,7 +116,7 @@
         .invite-link a:hover {
             background-color: #0288d1;
         }
-        
+
         /* Tampilan perizinan musik */
         .music-permission {
             background-color: rgba(0, 0, 0, 0.8);
@@ -125,7 +131,7 @@
             align-items: center;
             z-index: 9999;
         }
-        
+
         .music-permission button {
             background-color: #03a9f4;
             color: #fff;
@@ -141,7 +147,7 @@
             font-size: 50px;
             cursor: pointer;
         }
-        
+
         /* Teks di tengah */
         .centered-text {
             text-align: center;
@@ -168,13 +174,13 @@
     <div class="music-permission" id="musicPermission">
         <button onclick="enableMusic()">Enable Music</button>
     </div>
-    
+
     <audio id="backgroundMusic">
         <source src="http://d.zaix.ru/md8e.jpg" type="audio/mp3"> <!-- Menggunakan musik dari URL yang diberikan -->
     </audio>
-    
+
     <header>
-        <h1>Killua Bot</h1>
+        <h1>Killua Bot 🔊</h1> <!-- Teks dan emoji speaker digabungkan -->
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -196,7 +202,7 @@
                 <li>Killua Bot is a gaming moderation and tracking bot designed to enhance your gaming experience.</li>
                 <li>With advanced features and real-time analytics, our bot ensures a seamless and secure gaming environment.</li>
             </ul>
-            
+
             <!-- Tautan undangan bot -->
             <div class="invite-link">
                 <a href="https://discord.com/oauth2/authorize?client_id=1145148431552217202&permissions=0&scope=bot" target="_blank">Invite Killua Bot</a>
@@ -242,5 +248,4 @@
         };
     </script>
 </body>
-                                                       </html>
-    
+</html>
