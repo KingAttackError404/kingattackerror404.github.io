@@ -153,12 +153,26 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
+        /* Logo speaker saat musik aktif */
+        .music-active {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background-image: url('https://image-url.com/speaker-active.png'); /* Ganti URL gambar dengan URL gambar ikon speaker aktif */
+            background-size: cover;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <div class="music-icon" id="musicIcon"></div> <!-- Ikon speaker musik -->
+    <div class="music-active" id="musicActive"></div> <!-- Logo speaker saat musik aktif -->
+    <div class="music-icon" id="musicIcon" onclick="toggleMusic()"></div> <!-- Ikon speaker musik -->
     <div class="music-permission" id="musicPermission">
-        <button onclick="toggleMusic()">Enable Music</button>
+        <button onclick="enableMusic()">Enable Music</button>
     </div>
     
     <audio id="backgroundMusic">
@@ -194,22 +208,39 @@
     </div>
 
     <script>
+        // Fungsi untuk menyalakan musik dan menyembunyikan perizinan
+        function enableMusic() {
+            var musicPermission = document.getElementById("musicPermission");
+            musicPermission.style.display = "none"; // Sembunyikan perizinan
+
+            var backgroundMusic = document.getElementById("backgroundMusic");
+            backgroundMusic.play(); // Mulai pemutaran musik
+        }
+
         // Fungsi untuk memainkan atau menghentikan musik
         function toggleMusic() {
             var backgroundMusic = document.getElementById("backgroundMusic");
             var musicPermission = document.getElementById("musicPermission");
             var musicIcon = document.getElementById("musicIcon");
+            var musicActive = document.getElementById("musicActive");
 
             if (backgroundMusic.paused) {
                 backgroundMusic.play(); // Memainkan musik
                 musicPermission.style.display = "none"; // Menyembunyikan perizinan
-                musicIcon.style.backgroundImage = "url('https://image-url.com/speaker-icon.png')"; // Mengganti ikon ke speaker aktif
+                musicIcon.style.display = "none"; // Menyembunyikan ikon speaker
+                musicActive.style.display = "block"; // Menampilkan ikon speaker aktif
             } else {
                 backgroundMusic.pause(); // Menghentikan musik
-                musicIcon.style.backgroundImage = "url('https://image-url.com/speaker-icon-mute.png')"; // Mengganti ikon ke speaker non-aktif
+                musicIcon.style.display = "block"; // Menampilkan ikon speaker
+                musicActive.style.display = "none"; // Menyembunyikan ikon speaker aktif
             }
         }
+
+        // Fungsi untuk menghentikan musik saat meninggalkan situs web
+        window.onbeforeunload = function() {
+            var backgroundMusic = document.getElementById("backgroundMusic");
+            backgroundMusic.pause(); // Menghentikan musik
+        };
     </script>
 </body>
-        </html>
-    
+</html>
