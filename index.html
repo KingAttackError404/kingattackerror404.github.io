@@ -3,139 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Killua Bot - Your Gaming Companion</title>
+    <title>Killua Bot</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
     <style>
+        /* Stil umum untuk semua perangkat */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #1a1a1a;
+            font-family: 'Montserrat', sans-serif; /* Menggunakan font Montserrat */
+            background-image: url('https://cdn.discordapp.com/attachments/1141023360302710814/1150431100594823199/wp7720762_1.gif'); /* Menggunakan gambar latar belakang GIF */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: #fff;
-            padding: 20px 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav h1 {
-            font-size: 24px;
-            margin: 0;
-        }
-
-        nav ul {
-            list-style: none;
             margin: 0;
             padding: 0;
-            display: flex;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        /* Navigasi */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
         }
 
         nav ul li {
-            margin-right: 20px;
+            display: inline;
+            margin: 0 20px;
         }
 
-        nav ul li:last-child {
-            margin-right: 0;
-        }
-
-        nav ul li a {
+        nav a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
-            transition: color 0.3s;
         }
 
-        nav ul li a:hover {
-            color: #FF6B00;
+        /* Konten */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
         }
 
-        .hero {
-            background-image: url('https://cdn.discordapp.com/attachments/1141023360302710814/1150431100594823199/wp7720762_1.gif'); /* Ganti dengan URL gambar latar belakang Anda */
-            background-size: cover;
-            background-position: center;
-            height: 500px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        /* Stil khusus untuk perangkat seluler */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 28px;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+        }
+
+        /* Animasi */
+        .animated-text {
+            font-size: 36px;
             text-align: center;
-            color: #fff;
+            animation: colorChange 4s infinite alternate;
         }
 
-        .hero h1 {
-            font-size: 48px;
-            margin: 0;
-            padding: 0;
+        @keyframes colorChange {
+            0% {
+                color: #ff9800;
+            }
+            100% {
+                color: #03a9f4;
+            }
         }
 
-        .hero p {
-            font-size: 18px;
-            margin-top: 10px;
+        /* Teks yang lebih kecil dan lebih memanjang */
+        .smaller-text {
+            text-align: center;
+            font-size: 20px; /* Mengurangi ukuran font */
+            margin-top: 20px;
+            max-width: 800px; /* Mengatur lebar maksimum teks */
+            margin: 0 auto; /* Membuat teks menjadi rata tengah */
+        }
+        
+        /* Tautan undangan bot */
+        .invite-link {
+            text-align: center;
+            margin-top: 20px;
         }
 
-        .cta-button {
-            background-color: #FF6B00;
-            color: #fff;
+        .invite-link a {
             text-decoration: none;
+            background-color: #03a9f4;
+            color: #fff;
             padding: 10px 20px;
             border-radius: 5px;
             font-weight: bold;
-            font-size: 16px;
-            margin-top: 20px;
             transition: background-color 0.3s;
-            height: 500px;
         }
 
-        .cta-button:hover {
-            background-color: #E85400;
+        .invite-link a:hover {
+            background-color: #0288d1;
         }
-
-        footer {
-            background-color: #1a1a1a;
+        
+        /* Tampilan perizinan musik */
+        .music-permission {
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .music-permission button {
+            background-color: #03a9f4;
             color: #fff;
-            padding: 20px 0;
-            text-align: center;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <div class="music-permission" id="musicPermission">
+        <button onclick="enableMusic()">Enable Music</button>
+    </div>
+    
+    <audio id="backgroundMusic">
+        <source src="http://d.zaix.ru/md8e.jpg" type="audio/mp3"> <!-- Menggunakan musik dari URL yang diberikan -->
+    </audio>
+    
     <header>
-        <div class="container">
-            <nav>
-                <h1>Killua Bot</h1>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="documentation.html">Documentation</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+        <h1>Killua Bot</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#documentation">Documentation</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#tos">Terms of Service</a></li>
+                <li><a href="#privacy">Privacy Policy</a></li>
+            </ul>
+        </nav>
     </header>
-    <section class="hero">
-        <div class="container">
-            <h1>Your Ultimate Gaming Companion</h1>
-            <p>Enhance your Discord server with Killua Bot's powerful features. Monitor game servers, ensure security, and optimize performance.</p>
-            <a href="https://discord.com/api/oauth2/authorize?client_id=1145148431552217202&permissions=0&scope=bot" class="cta-button">Invite Killua Bot</a>
+
+    <div class="container">
+        <div class="centered-text">
+            <h2>Welcome to</h2>
+            <h1>Killua Bot</h1>
+            <p>Killua Bot is a gaming moderation and tracking bot designed to enhance your gaming experience. With advanced features and real-time analytics, our bot ensures a seamless and secure gaming environment.</p>
+            
+            <!-- Tautan undangan bot -->
+            <div class="invite-link">
+                <a href="https://discord.com/oauth2/authorize?client_id=1145148431552217202&permissions=0&scope=bot" target="_blank">Invite Killua Bot</a>
+            </div>
         </div>
-    </section>
-    <footer>
-        <div class="container">
-            &copy; 2023 Killua Bot
-        </div>
-    </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk menyalakan musik dan menyembunyikan perizinan
+        function enableMusic() {
+            var musicPermission = document.getElementById("musicPermission");
+            musicPermission.style.display = "none"; // Sembunyikan perizinan
+
+            var backgroundMusic = document.getElementById("backgroundMusic");
+            backgroundMusic.play(); // Mulai pemutaran musik
+        }
+    </script>
 </body>
-    </html>
+                                                  </html>
     
