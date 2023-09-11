@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Killua Bot</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
     <style>
         /* Stil umum untuk semua perangkat */
         body {
@@ -50,39 +51,6 @@
             text-decoration: none;
             color: #fff;
             font-weight: bold;
-        }
-
-        /* Teks yang lebih besar dan lebih memanjang */
-        .large-text {
-            text-align: center;
-            font-size: 48px; /* Menambahkan ukuran font yang lebih besar */
-            max-width: 800px; /* Mengatur lebar maksimum teks */
-            margin: 0 auto; /* Membuat teks menjadi rata tengah */
-            background-color: rgba(0, 0, 0, 0.5); /* Latar belakang hitam transparan */
-            color: #fff; /* Teks putih */
-            padding: 20px; /* Padding untuk konten dalam kotak */
-            border-radius: 10px; /* Sudut bulat untuk kotak */
-            margin-top: 20px;
-        }
-
-        /* Tautan undangan bot */
-        .invite-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .invite-link a {
-            text-decoration: none;
-            background-color: #03a9f4;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-
-        .invite-link a:hover {
-            background-color: #0288d1;
         }
 
         /* Tampilan perizinan musik */
@@ -134,6 +102,37 @@
             font-size: 30px;
             cursor: pointer;
         }
+
+        /* Hero Section */
+        .hero {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 80px 0;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .cta-button {
+            text-decoration: none;
+            background-color: #03a9f4;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #0288d1;
+        }
     </style>
 </head>
 <body>
@@ -164,11 +163,13 @@
         </div>
     </header>
 
-    <div class="large-text">
-        <h2>Welcome to</h2>
-        <h1>Killua Bot</h1>
-        <p>Killua Bot is a gaming moderation and tracking bot designed to enhance your gaming experience. With advanced features and real-time analytics, our bot ensures a seamless and secure gaming environment.</p>
-    </div>
+    <section class="hero">
+        <div class="container">
+            <h1>Your Ultimate Gaming Companion</h1>
+            <p>Enhance your Discord server with Killua Bot's powerful features. Monitor game servers, ensure security, and optimize performance.</p>
+            <a href="https://discord.com/api/oauth2/authorize?client_id=1145148431552217202&permissions=0&scope=bot" class="cta-button">Invite Killua Bot</a>
+        </div>
+    </section>
 
     <script>
         // Fungsi untuk menyalakan musik dan menyembunyikan perizinan
@@ -208,5 +209,5 @@
         };
     </script>
 </body>
-    </html>
-        
+                </html>
+    
