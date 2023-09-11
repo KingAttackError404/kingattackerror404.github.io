@@ -69,6 +69,17 @@
             margin-top: 20px;
         }
 
+        /* Hitbox */
+        .hitbox {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Warna hitam transparan */
+            z-index: 1; /* Memastikan tumpukan di atas elemen lain */
+        }
+
         /* Stil khusus untuk perangkat seluler */
         @media (max-width: 768px) {
             header h1 {
@@ -188,7 +199,7 @@
     </audio>
 
     <header>
-        <h1></h1> <!-- Teks "Killua Bot" di tengah -->
+        <h1>Killua Bot</h1> <!-- Teks "Killua Bot" di tengah -->
         <div>
             <nav>
                 <ul>
@@ -212,6 +223,7 @@
                 <p>Killua Bot is a gaming moderation and tracking bot designed to enhance your gaming experience. With advanced features and real-time analytics, our bot ensures a seamless and secure gaming environment.</p>
             </div>
         </div>
+        <div class="hitbox" id="hitbox"></div> <!-- Hitbox yang menyatu dengan konten -->
     </div>
 
     <script>
