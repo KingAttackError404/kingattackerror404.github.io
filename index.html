@@ -132,6 +132,19 @@
             display: inline-block; /* Menambahkan properti display */
             margin-top: 20px; /* Menambahkan margin atas */
         }
+
+        /* Teks menu horizontal */
+        .menu-horizontal {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 14px;
+        }
+
+        .menu-horizontal a {
+            text-decoration: none;
+            color: #fff;
+            margin-left: 20px;
+        }
     </style>
 </head>
 <body>
@@ -142,23 +155,19 @@
     </div>
 
     <audio id="backgroundMusic">
-        <source src="http://d.zaix.ru/mjwp.jpg" type="audio/mp3"> <!-- Menggunakan musik dari URL yang diberikan -->
+        <source src="http://j.top4top.io/m_2687asaj52.mp3" type="audio/mp3"> <!-- Menggunakan musik dari URL yang diberikan -->
     </audio>
 
     <header>
         <h1></h1> <!-- Teks "Killua Bot" di tengah -->
-        <div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#documentation">Documentation</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#tos">Terms of Service</a></li>
-                    <li><a href="#privacy">Privacy Policy</a></li>
-                </ul>
-            </nav>
+        <div class="menu-horizontal">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#documentation">Documentation</a>
+            <a href="#blog">Blog</a>
+            <a href="#contact">Contact</a>
+            <a href="#tos">Terms of Service</a>
+            <a href="#privacy">Privacy Policy</a>
         </div>
     </header>
 
