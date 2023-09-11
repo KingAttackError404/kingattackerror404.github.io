@@ -69,15 +69,12 @@
             margin-top: 20px;
         }
 
-        /* Hitbox */
+        /* Hitbox untuk teks "Welcome to Killua Bot" */
         .hitbox {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             background-color: rgba(0, 0, 0, 0.7); /* Warna hitam transparan */
-            z-index: 1; /* Memastikan tumpukan di atas elemen lain */
+            padding: 10px; /* Padding untuk hitbox */
+            border-radius: 10px; /* Border radius untuk sudut hitbox */
+            display: inline-block; /* Menjadikan hitbox inline block */
         }
 
         /* Stil khusus untuk perangkat seluler */
@@ -218,12 +215,13 @@
     <div class="container">
         <div class="box">
             <div class="large-text">
-                <h2>Welcome to</h2>
-                <h1>Killua Bot</h1>
-                <p>Killua Bot is a gaming moderation and tracking bot designed to enhance your gaming experience. With advanced features and real-time analytics, our bot ensures a seamless and secure gaming environment.</p>
+                <div class="hitbox"> <!-- Hitbox untuk teks "Welcome to Killua Bot" -->
+                    <h2>Welcome to</h2>
+                    <h1>Killua Bot</h1>
+                    <p>Killua Bot is a gaming moderation and tracking bot designed to enhance your gaming experience. With advanced features and real-time analytics, our bot ensures a seamless and secure gaming environment.</p>
+                </div>
             </div>
         </div>
-        <div class="hitbox" id="hitbox"></div> <!-- Hitbox yang menyatu dengan konten -->
     </div>
 
     <script>
@@ -264,4 +262,5 @@
         };
     </script>
 </body>
-</html>
+        </html>
+    
