@@ -1,5 +1,16 @@
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Request Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="width: 80%; margin: 0 auto;">
+        <canvas id="requestChart" width="400" height="200"></canvas>
+    </div>
+    <script>
         // Inisialisasi chart
         var ctx = document.getElementById('requestChart').getContext('2d');
         var chart = new Chart(ctx, {
@@ -37,14 +48,18 @@
         }
 
         // Memuat jumlah permintaan dari server setiap detik
-        setInterval(function () {
+        function loadRequestCount() {
             fetch('test.php') // Gantilah dengan URL server Anda
                 .then(response => response.json())
                 .then(data => {
                     addData(chart, new Date().toLocaleTimeString(), data.requestCount);
                 })
                 .catch(error => console.error('Error:', error));
-        }, 1000); // Setel interval sesuai dengan preferensi Anda
-    });
-</script>
-  
+        }
+
+        // Contoh penggunaan: load data setiap detik
+        setInterval(loadRequestCount, 1000); // Setel interval sesuai dengan preferensi Anda
+    </script>
+</body>
+        </html>
+        
