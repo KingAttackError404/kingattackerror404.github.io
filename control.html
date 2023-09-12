@@ -5,36 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Control Panel</title>
     <style>
-        /* CSS Anda dapat ditempatkan di sini */
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .control-container {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            margin: 100px auto;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 10px;
+        }
     </style>
 </head>
 <body>
     <div class="control-container">
         <h1>Website Control Panel</h1>
+        <p>Current Mode: <span id="modeDisplay">Normal</span></p> <!-- Penambahan mode aktif -->
         <div class="btn-container">
             <button class="btn" id="normalBtn">Normal Mode</button>
             <button class="btn" id="maintenanceBtn">Maintenance Mode</button>
+            <button class="btn" id="attackBtn1">Under Attack v1</button> <!-- Mode Under Attack v1 -->
+            <button class="btn" id="attackBtn2">Under Attack v2</button> <!-- Mode Under Attack v2 -->
         </div>
     </div>
 
     <script>
         // Fungsi untuk mengubah status situs menjadi normal
         function setNormalMode() {
-            localStorage.setItem('siteStatus', 'normal'); // Simpan status di localStorage
+            localStorage.setItem('siteStatus', 'normal');
+            document.getElementById('modeDisplay').textContent = 'Normal'; // Perbarui tampilan mode
             alert('Situs telah diubah menjadi normal.');
         }
 
         // Fungsi untuk mengubah status situs menjadi maintenance
         function setMaintenanceMode() {
-            localStorage.setItem('siteStatus', 'maintenance'); // Simpan status di localStorage
+            localStorage.setItem('siteStatus', 'maintenance');
+            document.getElementById('modeDisplay').textContent = 'Maintenance'; // Perbarui tampilan mode
             alert('Situs telah diubah menjadi mode maintenance.');
+        }
+
+        // Fungsi untuk mengubah status situs menjadi Under Attack v1
+        function setAttackMode1() {
+            localStorage.setItem('siteStatus', 'under_attack_v1');
+            document.getElementById('modeDisplay').textContent = 'Under Attack v1'; // Perbarui tampilan mode
+            alert('Situs telah diubah menjadi mode Under Attack v1.');
+        }
+
+        // Fungsi untuk mengubah status situs menjadi Under Attack v2
+        function setAttackMode2() {
+            localStorage.setItem('siteStatus', 'under_attack_v2');
+            document.getElementById('modeDisplay').textContent = 'Under Attack v2'; // Perbarui tampilan mode
+            alert('Situs telah diubah menjadi mode Under Attack v2.');
         }
 
         // Menghubungkan tombol dengan fungsi yang sesuai
         const normalBtn = document.getElementById('normalBtn');
         const maintenanceBtn = document.getElementById('maintenanceBtn');
+        const attackBtn1 = document.getElementById('attackBtn1');
+        const attackBtn2 = document.getElementById('attackBtn2');
+
         normalBtn.addEventListener('click', setNormalMode);
         maintenanceBtn.addEventListener('click', setMaintenanceMode);
+        attackBtn1.addEventListener('click', setAttackMode1);
+        attackBtn2.addEventListener('click', setAttackMode2);
+
+        // Fungsi untuk memperbarui tampilan mode saat halaman dimuat
+        function updateModeDisplay() {
+            const siteStatus = localStorage.getItem('siteStatus');
+            if (siteStatus) {
+                document.getElementById('modeDisplay').textContent = siteStatus;
+            }
+        }
+
+        // Panggil fungsi untuk memperbarui tampilan mode saat halaman dimuat
+        updateModeDisplay();
     </script>
 </body>
-</html>
+    </html>
+    
