@@ -6,12 +6,27 @@
     <title>Save Page - Killua Bot</title>
 </head>
 <body>
-    <div class="password-form">
-        <h1>Enter Password</h1>
-        <form action="unlock.html" method="post">
-            <input type="password" name="password" required>
-            <button type="submit">Submit</button>
-        </form>
+    <div class="contact-results">
+        <h1>Contact Results</h1>
+        <div>
+            <strong>Name:</strong>
+            <span id="contactName"></span>
+        </div>
+        <div>
+            <strong>Email:</strong>
+            <span id="contactEmail"></span>
+        </div>
     </div>
+
+    <script>
+        // Ambil nama dan email dari local storage
+        const contactName = localStorage.getItem('contactName');
+        const contactEmail = localStorage.getItem('contactEmail');
+
+        // Tampilkan nama dan email di halaman "save.html"
+        document.getElementById('contactName').textContent = contactName || 'N/A';
+        document.getElementById('contactEmail').textContent = contactEmail || 'N/A';
+    </script>
 </body>
-</html>
+    </html>
+        
