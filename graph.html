@@ -11,7 +11,6 @@
         <canvas id="requestChart" width="400" height="200"></canvas>
     </div>
     <script>
-        // Inisialisasi chart
         var ctx = document.getElementById('requestChart').getContext('2d');
         var chart = new Chart(ctx, {
             type: 'line',
@@ -49,10 +48,11 @@
 
         // Memuat jumlah permintaan dari server setiap detik
         function loadRequestCount() {
-            fetch('test.php') // Gantilah dengan URL server Anda
+            fetch('/requestCount')
                 .then(response => response.json())
                 .then(data => {
-                    addData(chart, new Date().toLocaleTimeString(), data.requestCount);
+                    var timestamp = new Date().toLocaleTimeString();
+                    addData(chart, timestamp, data.requestCount);
                 })
                 .catch(error => console.error('Error:', error));
         }
@@ -61,5 +61,4 @@
         setInterval(loadRequestCount, 1000); // Setel interval sesuai dengan preferensi Anda
     </script>
 </body>
-        </html>
-        
+</html>
