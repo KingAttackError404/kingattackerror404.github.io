@@ -239,21 +239,23 @@
             }
         }
 
-        // Panggil fungsi pengalihan saat halaman dimuat
-        redirectToPage();
-            
-        
-
         // Fungsi untuk memeriksa status situs secara berulang
         function checkSiteStatus() {
-            const siteStatus = localStorage.getItem('siteStatus'); // Baca status dari localStorage
-            if (siteStatus === 'normal') {
+            const currentStatus = localStorage.getItem('siteStatus'); // Baca status dari localStorage
+            const previousStatus = localStorage.getItem('previousSiteStatus'); // Baca status sebelumnya
+
+            if (currentStatus !== previousStatus) {
+                // Jika status berubah, maka perbarui halaman
+                localStorage.setItem('previousSiteStatus', currentStatus); // Simpan status saat ini sebagai status sebelumnya
                 redirectToPage(); // Arahkan ke halaman yang sesuai
             } else {
-                // Jika status bukan normal, periksa kembali setelah beberapa detik
+                // Jika status tetap sama, periksa kembali setelah beberapa detik
                 setTimeout(checkSiteStatus, 1000); // Cek setiap 1 detik
             }
         }
+
+        // Panggil fungsi pengalihan saat halaman dimuat
+        redirectToPage();
 
         // Panggil fungsi pemantauan saat halaman dimuat
         checkSiteStatus();
