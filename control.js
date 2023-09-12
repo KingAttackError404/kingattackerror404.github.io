@@ -1,4 +1,4 @@
-// Fungsi untuk mengarahkan ke halaman yang sesuai berdasarkan status situs
+ // Fungsi untuk mengarahkan ke halaman yang sesuai berdasarkan status situs
     function redirectToPage() {
         const siteStatus = localStorage.getItem('siteStatus');
         if (siteStatus === 'maintenance') {
@@ -8,14 +8,14 @@
         } else if (siteStatus === 'under_attack_v2') {
             window.location.href = 'v2.html';
         } else {
-            window.location.href = 'main.html'; // Default jika status tidak ada atau normal
+            window.location.href = 'main.html'; // Arahkan ke halaman default (normal)
         }
     }
 
     // Panggil fungsi pengalihan saat halaman dimuat
     redirectToPage();
 
-    // Fungsi untuk memeriksa perubahan status dari kontrol
+    // Fungsi untuk memeriksa perubahan status dan melakukan refresh saat diperlukan
     function checkAndRefreshStatus() {
         const currentStatus = localStorage.getItem('siteStatus');
         setInterval(function () {
