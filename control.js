@@ -15,16 +15,16 @@
     // Panggil fungsi pengalihan saat halaman dimuat
     redirectToPage();
 
+    // Variabel untuk menyimpan status sebelumnya
+    let currentStatus = localStorage.getItem('siteStatus');
+
     // Fungsi untuk memeriksa perubahan status dan melakukan refresh saat diperlukan
     function checkAndRefreshStatus() {
-        const currentStatus = localStorage.getItem('siteStatus'); // Ambil status saat ini
-        setInterval(function () {
-            const newStatus = localStorage.getItem('siteStatus'); // Ambil status baru
-            if (newStatus !== currentStatus) {
-                location.reload(); // Lakukan refresh jika terjadi perubahan status
-            }
-        }, 1000); // Periksa setiap 1 detik
+        const newStatus = localStorage.getItem('siteStatus'); // Ambil status baru
+        if (newStatus !== currentStatus) {
+            location.reload(); // Lakukan refresh jika terjadi perubahan status
+        }
     }
 
-    // Panggil fungsi pemantauan perubahan status
-    checkAndRefreshStatus();
+    // Panggil fungsi pemantauan perubahan status secara berulang
+    setInterval(checkAndRefreshStatus, 1000); // Periksa setiap 1 detik
