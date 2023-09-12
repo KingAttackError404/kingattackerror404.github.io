@@ -1,4 +1,3 @@
-<script>
         // Fungsi untuk mengarahkan ke halaman yang sesuai berdasarkan status situs
         function redirectToPage() {
             const siteStatus = localStorage.getItem('siteStatus'); // Baca status dari localStorage
@@ -15,4 +14,3 @@
 
         // Panggil fungsi pengalihan saat halaman dimuat
         redirectToPage();
-    </script>
