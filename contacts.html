@@ -100,7 +100,7 @@
                 <input type="email" id="email" name="email" required>
 
                 <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
+                <textarea id="message" name="message" rows="6" required></textarea>
 
                 <button type="submit">Submit</button>
             </form>
@@ -110,22 +110,6 @@
     <footer>
         <p>&copy; 2023 Killua Bot. All rights reserved.</p>
     </footer>
-
-    <script>
-        // Simpan nama dan email ke dalam local storage saat formulir disubmit
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-
-            localStorage.setItem('contactName', name);
-            localStorage.setItem('contactEmail', email);
-
-            // Lanjutkan dengan mengirimkan formulir jika diperlukan
-            this.submit();
-        });
-    </script>
 </body>
                     </html>
-                                                           
+    
