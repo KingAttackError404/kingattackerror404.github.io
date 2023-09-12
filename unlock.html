@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlocked Page - Killua Bot</title>
+</head>
+<body>
+    <div class="contact-results">
+        <h1>Contact Results</h1>
+        <?php
+        $password = $_POST['password'];
+        // Periksa apakah kata sandi benar (gantilah dengan kata sandi yang Anda inginkan)
+        if ($password === 'password123') {
+            // Tampilkan hasil dari "contacts.html"
+            include 'contacts.html';
+        } else {
+            echo '<p>Invalid password. Access denied.</p>';
+        }
+        ?>
+    </div>
+</body>
+</html>
