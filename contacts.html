@@ -69,33 +69,6 @@
         button[type="submit"]:hover {
             background-color: #5a68a5;
         }
-
-        /* CSS untuk menu u1 */
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-
-        ul li:last-child {
-            margin-right: 0;
-        }
-
-        ul li a {
-            text-decoration: none;
-            color: #fff;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        ul li a:hover {
-            color: #7289da;
-        }
     </style>
 </head>
 <body>
@@ -107,14 +80,6 @@
                 <li><a href="documentation.html">Documentation</a></li>
                 <li><a href="blog.html">Blog</a></li>
                 <li class="active"><a href="contacts.html">Contact</a></li>
-                <li><a href="tos.html">Terms of Service</a></li>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <!-- Menu u1 -->
-                <li><a href="home.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="documentation.html">Documentation</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contacts.html">Contact</a></li>
                 <li><a href="tos.html">Terms of Service</a></li>
                 <li><a href="privacy.html">Privacy Policy</a></li>
             </ul>
@@ -145,5 +110,22 @@
     <footer>
         <p>&copy; 2023 Killua Bot. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Simpan nama dan email ke dalam local storage saat formulir disubmit
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            localStorage.setItem('contactName', name);
+            localStorage.setItem('contactEmail', email);
+
+            // Lanjutkan dengan mengirimkan formulir jika diperlukan
+            this.submit();
+        });
+    </script>
 </body>
-</html>
+                    </html>
+                                                           
