@@ -57,10 +57,11 @@
 
         // Mengirim permintaan untuk mengubah status situs menjadi normal
         normalBtn.addEventListener('click', () => {
-            fetch('/set-status?status=normal')
+            fetch('/set-status?status=normal') // Ganti dengan URL yang sesuai
                 .then(response => {
                     if (response.status === 200) {
                         alert('Situs telah diubah menjadi normal.');
+                        window.location.href = 'index.html'; // Arahkan kembali ke halaman index.html
                     } else {
                         alert('Gagal mengubah status situs.');
                     }
@@ -73,10 +74,11 @@
 
         // Mengirim permintaan untuk mengubah status situs menjadi maintenance
         maintenanceBtn.addEventListener('click', () => {
-            fetch('/set-status?status=maintenance')
+            fetch('/set-status?status=maintenance') // Ganti dengan URL yang sesuai
                 .then(response => {
                     if (response.status === 200) {
                         alert('Situs telah diubah menjadi mode maintenance.');
+                        window.location.href = 'maintenance.html'; // Arahkan kembali ke halaman maintenance.html
                     } else {
                         alert('Gagal mengubah status situs.');
                     }
