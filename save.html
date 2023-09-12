@@ -37,6 +37,7 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
         }
 
         strong {
@@ -62,17 +63,10 @@
     <section class="contact-results">
         <div class="container">
             <h1>Contact Results</h1>
-            <div class="result-box">
-                <strong>Name:</strong>
-                <span id="contactName">N/A</span>
-            </div>
-            <div class="result-box">
-                <strong>Email:</strong>
-                <span id="contactEmail">N/A</span>
-            </div>
-            <div class="result-box">
-                <strong>Message:</strong>
-                <p id="contactMessage">N/A</p>
+            
+            <!-- Menampilkan pesan-pesan dari local storage -->
+            <div id="contactList">
+                <!-- Pesan-pesan akan ditampilkan di sini -->
             </div>
         </div>
     </section>
@@ -82,16 +76,35 @@
     </footer>
 
     <script>
-        // Ambil data dari local storage
-        const contactName = localStorage.getItem('contactName') || 'N/A';
-        const contactEmail = localStorage.getItem('contactEmail') || 'N/A';
-        const contactMessage = localStorage.getItem('contactMessage') || 'N/A';
+        // Fungsi untuk menampilkan pesan-pesan dari local storage
+        function displayContactMessages() {
+            const contactList = document.getElementById('contactList');
+            contactList.innerHTML = ''; // Kosongkan kontainer sebelum menampilkan pesan-pesan
 
-        // Tampilkan data pada halaman
-        document.getElementById('contactName').textContent = contactName;
-        document.getElementById('contactEmail').textContent = contactEmail;
-        document.getElementById('contactMessage').textContent = contactMessage;
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+
+                // Pastikan kunci dimulai dengan 'contact_' untuk membedakan dari data lain di local storage
+                if (key.startsWith('contact_')) {
+                    const data = JSON.parse(localStorage.getItem(key));
+
+                    // Buat elemen untuk menampilkan pesan
+                    const resultBox = document.createElement('div');
+                    resultBox.classList.add('result-box');
+                    resultBox.innerHTML = `
+                        <strong>Name:</strong> ${data.name}<br>
+                        <strong>Email:</strong> ${data.email}<br>
+                        <strong>Message:</strong> ${data.message}
+                    `;
+
+                    // Tambahkan elemen pesan ke dalam kontainer
+                    contactList.appendChild(resultBox);
+                }
+            }
+        }
+
+        // Panggil fungsi untuk menampilkan pesan-pesan saat halaman dimuat
+        displayContactMessages();
     </script>
 </body>
-    </html>
-    
+</html>
