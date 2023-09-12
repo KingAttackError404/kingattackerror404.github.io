@@ -1,0 +1,50 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Inisialisasi chart
+        var ctx = document.getElementById('requestChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Jumlah Request',
+                    data: [],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom'
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Fungsi untuk menambahkan data ke grafik
+        function addData(chart, label, data) {
+            chart.data.labels.push(label);
+            chart.data.datasets.forEach((dataset) => {
+                dataset.data.push(data);
+            });
+            chart.update();
+        }
+
+        // Memuat jumlah permintaan dari server setiap detik
+        setInterval(function () {
+            fetch('test.php') // Gantilah dengan URL server Anda
+                .then(response => response.json())
+                .then(data => {
+                    addData(chart, new Date().toLocaleTimeString(), data.requestCount);
+                })
+                .catch(error => console.error('Error:', error));
+        }, 1000); // Setel interval sesuai dengan preferensi Anda
+    });
+</script>
+  
