@@ -5,41 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Control Panel</title>
     <style>
-        body {
-            font-family: 'Helvetica Neue', sans-serif;
-            background-color: #f2f2f2;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .control-container {
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            margin: 100px auto;
-            max-width: 400px;
-        }
-
-        h1 {
-            font-size: 24px;
-        }
-
-        .btn-container {
-            margin-top: 20px;
-        }
-
-        .btn {
-            background-color: #ffcc00;
-            color: #000;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            margin: 0 10px;
-        }
+        /* CSS Anda dapat ditempatkan di sini */
     </style>
 </head>
 <body>
@@ -52,42 +18,23 @@
     </div>
 
     <script>
+        // Fungsi untuk mengubah status situs menjadi normal
+        function setNormalMode() {
+            localStorage.setItem('siteStatus', 'normal'); // Simpan status di localStorage
+            alert('Situs telah diubah menjadi normal.');
+        }
+
+        // Fungsi untuk mengubah status situs menjadi maintenance
+        function setMaintenanceMode() {
+            localStorage.setItem('siteStatus', 'maintenance'); // Simpan status di localStorage
+            alert('Situs telah diubah menjadi mode maintenance.');
+        }
+
+        // Menghubungkan tombol dengan fungsi yang sesuai
         const normalBtn = document.getElementById('normalBtn');
         const maintenanceBtn = document.getElementById('maintenanceBtn');
-
-        // Mengirim permintaan untuk mengubah status situs menjadi normal
-        normalBtn.addEventListener('click', () => {
-            fetch('/set-status?status=normal') // Ganti dengan URL yang sesuai
-                .then(response => {
-                    if (response.status === 200) {
-                        alert('Situs telah diubah menjadi normal.');
-                        window.location.href = 'index.html'; // Arahkan kembali ke halaman index.html
-                    } else {
-                        alert('Gagal mengubah status situs.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Terjadi kesalahan:', error);
-                    alert('Gagal menghubungi server.');
-                });
-        });
-
-        // Mengirim permintaan untuk mengubah status situs menjadi maintenance
-        maintenanceBtn.addEventListener('click', () => {
-            fetch('/set-status?status=maintenance') // Ganti dengan URL yang sesuai
-                .then(response => {
-                    if (response.status === 200) {
-                        alert('Situs telah diubah menjadi mode maintenance.');
-                        window.location.href = 'index.html'; // Arahkan kembali ke halaman index.html
-                    } else {
-                        alert('Gagal mengubah status situs.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Terjadi kesalahan:', error);
-                    alert('Gagal menghubungi server.');
-                });
-        });
+        normalBtn.addEventListener('click', setNormalMode);
+        maintenanceBtn.addEventListener('click', setMaintenanceMode);
     </script>
 </body>
 </html>
