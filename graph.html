@@ -62,3 +62,13 @@
     </script>
 </body>
 </html>
+
+<script>
+fetch('https://graph.pablobotz110.repl.co/graph.html') // Ganti dengan URL endpoint graph.html di Replit Anda
+    .then(response => response.text())
+    .then(data => {
+        // Lakukan apa yang Anda inginkan dengan respons dari server Replit.
+        console.log(data);
+    })
+    .catch(error => console.error('Error:', error));
+</script>
