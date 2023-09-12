@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <!-- Add your CSS and other HTML content here -->
+</head>
+<body>
+    <!-- Your website content goes here -->
+
+    <script>
+        // Simulasikan status situs (normal atau maintenance)
+        const siteStatus = 'normal'; // Ganti dengan 'maintenance' jika Anda ingin simulasi mode maintenance
+
+        // Fungsi untuk melakukan pengalihan
+        function redirectToPage() {
+            if (siteStatus === 'maintenance') {
+                window.location.href = 'maintenance.html';
+            } else {
+                window.location.href = 'normal.html';
+            }
+        }
+
+        // Panggil fungsi pengalihan saat halaman dimuat
+        redirectToPage();
+    </script>
+</body>
+</html>
