@@ -7,23 +7,39 @@
     <style>
         body {
             font-family: 'Helvetica Neue', sans-serif;
-            background-color: #f2f2f2;
+            background-color: #000;
             text-align: center;
             margin: 0;
             padding: 0;
+            color: #fff;
+            transition: background-color 0.5s;
         }
 
         .control-container {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
             padding: 20px;
             margin: 100px auto;
             max-width: 400px;
+            transition: box-shadow 0.5s;
         }
 
         h1 {
-            font-size: 24px;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #ffcc00;
+        }
+
+        .mode-label {
+            font-size: 18px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        #modeDisplay {
+            color: #ffcc00;
+            font-weight: bold;
         }
 
         .btn-container {
@@ -39,60 +55,54 @@
             cursor: pointer;
             font-size: 16px;
             margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e0a800;
         }
     </style>
 </head>
 <body>
     <div class="control-container">
         <h1>Website Control Panel</h1>
-        <p>Current Mode: <span id="modeDisplay">Normal</span></p> <!-- Penambahan mode aktif -->
+        <p class="mode-label">Current Mode: <span id="modeDisplay">Normal</span></p>
         <div class="btn-container">
             <button class="btn" id="normalBtn">Normal Mode</button>
             <button class="btn" id="maintenanceBtn">Maintenance Mode</button>
-            <button class="btn" id="attackBtn1">Under Attack v1</button> <!-- Mode Under Attack v1 -->
-            <button class="btn" id="attackBtn2">Under Attack v2</button> <!-- Mode Under Attack v2 -->
+            <button class="btn" id="attackBtn1">Under Attack v1</button>
+            <button class="btn" id="attackBtn2">Under Attack v2</button>
         </div>
     </div>
 
     <script>
-        // Fungsi untuk mengubah status situs menjadi normal
-        function setNormalMode() {
-            localStorage.setItem('siteStatus', 'normal');
-            document.getElementById('modeDisplay').textContent = 'Normal'; // Perbarui tampilan mode
-            alert('Situs telah diubah menjadi normal.');
-        }
-
-        // Fungsi untuk mengubah status situs menjadi maintenance
-        function setMaintenanceMode() {
-            localStorage.setItem('siteStatus', 'maintenance');
-            document.getElementById('modeDisplay').textContent = 'Maintenance'; // Perbarui tampilan mode
-            alert('Situs telah diubah menjadi mode maintenance.');
-        }
-
-        // Fungsi untuk mengubah status situs menjadi Under Attack v1
-        function setAttackMode1() {
-            localStorage.setItem('siteStatus', 'under_attack_v1');
-            document.getElementById('modeDisplay').textContent = 'Under Attack v1'; // Perbarui tampilan mode
-            alert('Situs telah diubah menjadi mode Under Attack v1.');
-        }
-
-        // Fungsi untuk mengubah status situs menjadi Under Attack v2
-        function setAttackMode2() {
-            localStorage.setItem('siteStatus', 'under_attack_v2');
-            document.getElementById('modeDisplay').textContent = 'Under Attack v2'; // Perbarui tampilan mode
-            alert('Situs telah diubah menjadi mode Under Attack v2.');
-        }
-
-        // Menghubungkan tombol dengan fungsi yang sesuai
+        const body = document.body;
         const normalBtn = document.getElementById('normalBtn');
         const maintenanceBtn = document.getElementById('maintenanceBtn');
         const attackBtn1 = document.getElementById('attackBtn1');
         const attackBtn2 = document.getElementById('attackBtn2');
 
-        normalBtn.addEventListener('click', setNormalMode);
-        maintenanceBtn.addEventListener('click', setMaintenanceMode);
-        attackBtn1.addEventListener('click', setAttackMode1);
-        attackBtn2.addEventListener('click', setAttackMode2);
+        function setModeAndBackground(mode, bgColor) {
+            localStorage.setItem('siteStatus', mode);
+            document.getElementById('modeDisplay').textContent = mode;
+            body.style.backgroundColor = bgColor;
+        }
+
+        normalBtn.addEventListener('click', function () {
+            setModeAndBackground('Normal', '#000');
+        });
+
+        maintenanceBtn.addEventListener('click', function () {
+            setModeAndBackground('Maintenance', '#990000'); // Warna merah untuk mode Maintenance
+        });
+
+        attackBtn1.addEventListener('click', function () {
+            setModeAndBackground('Under Attack v1', '#003366'); // Warna biru tua untuk mode Attack v1
+        });
+
+        attackBtn2.addEventListener('click', function () {
+            setModeAndBackground('Under Attack v2', '#660066'); // Warna ungu tua untuk mode Attack v2
+        });
 
         // Fungsi untuk memperbarui tampilan mode saat halaman dimuat
         function updateModeDisplay() {
