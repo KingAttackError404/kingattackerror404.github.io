@@ -63,4 +63,20 @@
       $('.download-video').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+link+'&f='+fromate+'"></iframe>');
   }
 </script>
+  <script>
+        // Fungsi untuk mengarahkan ke halaman yang sesuai berdasarkan status situs
+        function redirectToPage() {
+            const siteStatus = localStorage.getItem('siteStatus'); // Baca status dari localStorage
+            if (siteStatus === 'maintenance') {
+                window.location.href = 'maintenance.html';
+            } else if (siteStatus === 'under_attack_v1') {
+                window.location.href = '502.html'; // Arahkan ke 502.html
+            } else if (siteStatus === 'under_attack_v2') {
+                window.location.href = 'v2.html'; // Arahkan ke v2.html
+            }
+        }
+
+        // Panggil fungsi pengalihan saat halaman dimuat
+        redirectToPage();
+  </script>
 </html>
