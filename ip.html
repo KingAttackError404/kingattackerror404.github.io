@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IP Log</title>
+</head>
+<body>
+    <h1>IP Log</h1>
+    <div id="ipData"></div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const ipDataElement = document.getElementById("ipData");
+
+            // Dapatkan data IP yang dikirim dari skrip JavaScript
+            const receivedData = document.location.hash.substr(1);
+
+            // Tambahkan data IP ke dalam elemen HTML
+            ipDataElement.innerHTML += receivedData + "<br>";
+        });
+    </script>
+</body>
+</html>
