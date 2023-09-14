@@ -106,6 +106,7 @@
             z-index: -1;
         }
 
+        /* Kode tambahan untuk centering tombol Download */
         .download-container {
             display: flex;
             justify-content: center;
@@ -141,76 +142,48 @@
             <div class="form-group">
                 <select class="form-control form-control-custom formte" required>
                     <option selected disabled>Select Video Format</option>
-                                            <option value="mp3">Mp3</option>
-                                            <!-- Tambahkan catatan bahwa format 144p, 360p, dan 480p sedang error -->
-                                            <option value="mp4a">144p Mp4 (Note: Currently Unavailable)</option>
-                                            <option value="360">360p Mp4 (Note: Currently Unavailable)</option>
-                                            <option value="480">480p Mp4 (Note: Currently Unavailable)</option>
-                                            <option value="720">720 Mp4</option>
-                                            <option value="1080">1080 Mp4</option>
-                                            <option value="4k">4k Mp4</option>
-                                            <option value="8k">8k Mp4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                    <div class="form-group mt-4 download-video">
-                                        <button class="btn btn-custom btn-block click-btn-down" type="submit">Click Here</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                    <option value="mp3">Mp3</option>
+                    <option value="360">360p Mp4</option>
+                    <option value="480">480p Mp4</option>
+                    <option value="720">720p Mp4</option>
+                    <option value="1080">1080p Mp4</option>
+                    <option value="4k">4k Mp4</option>
+                    <option value="8k">8k Mp4</option>
+                </select>
             </div>
-            <div class="custom-shape-divider-bottom-1610026357">
-                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M321.39,56.44c58-10.79,114.16-30-172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-		</svg>
-	</div>
-</div>
-</div>
+            <!-- Container untuk tombol "Download" -->
+            <div class="download-container">
+                <button name="download-button" class="btn btn-custom btn-block download-btn" type="button">Download</button>
+            </div>
+            <!-- Container untuk pesan catatan -->
+            <div class="download-video"></div>
+        </form>
+    </div>
 
     <!-- Footer dengan kredit -->
     <footer>
         <p class="credits">© gh.io engine</p>
         <p class="credits">© pablo & cloudflare inc 2023-2024</p>
     </footer>
-    <script type="text/javascript">
-        $(".click-btn-down").click(function(){
-            var link = $(".link").val();
-            var fromate = $(".formte").children("option:selected").val();
+    <script>
+        // Menggunakan event listener untuk menghindari refresh halaman saat klik tombol "Download"
+        document.querySelector(".download-btn").addEventListener("click", function(e) {
+            e.preventDefault(); // Mencegah form dikirim (untuk keperluan demo)
+            var link = document.querySelector(".link").value;
+            var fromate = document.querySelector(".formte").value;
 
             // Tambahkan kode untuk menampilkan catatan jika format yang dipilih tidak tersedia
-            if (fromate === 'mp4a' || fromate === '360' || fromate === '480') {
-                $('.download-video').html('<p class="note">Note: Currently Unavailable. Please choose another format.</p>');
+            if (fromate === '360' || fromate === '480') {
+                document.querySelector('.download-video').innerHTML = '<p class="note">Note: Currently Unavailable. Please choose another format.</p>';
             } else {
                 downloadVideo(link, fromate);
             }
         });
 
         function downloadVideo(link, fromate) {
-            $('.download-video').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+link+'&f='+fromate+'"></iframe>');
+            document.querySelector('.download-video').innerHTML = '<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+link+'&f='+fromate+'"></iframe>';
         }
     </script>
-	<script>
-        // Fungsi untuk mengarahkan ke halaman yang sesuai berdasarkan status situs
-        function redirectToPage() {
-            const siteStatus = localStorage.getItem('siteStatus'); // Baca status dari localStorage
-            if (siteStatus === 'maintenance') {
-                window.location.href = 'maintenance.html';
-            } else if (siteStatus === 'under_attack_v1') {
-                window.location.href = '502.html'; // Arahkan ke 502.html
-            } else if (siteStatus === 'under_attack_v2') {
-                window.location.href = 'v2.html'; // Arahkan ke v2.html
-            }
-        }
-
-        // Panggil fungsi pengalihan saat halaman dimuat
-        redirectToPage();
-	</script>
 </body>
 	</html>
 	
