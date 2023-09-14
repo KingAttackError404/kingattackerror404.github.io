@@ -142,23 +142,20 @@
         <p class="credits">© pablo & cloudflare inc 2023-2024</p>
     </footer>
     <script type="text/javascript">
-        document.querySelector(".click-btn-down").addEventListener("click", function(e) {
-            e.preventDefault(); // Mencegah form dikirim (untuk keperluan demo)
-            var link = document.querySelector(".link").value;
-            var fromate = document.querySelector(".formte").value;
+    $(".click-btn-down").click(function(){
+        var link = $(".link").val();
+        var fromate = $(".formte").children("option:selected").val();
 
-            // Tambahkan kode untuk menampilkan catatan jika format yang dipilih tidak tersedia
-            if (fromate === 'mp4a' || fromate === '360' || fromate === '480') {
-                document.querySelector('.download-video').innerHTML = '<p class="note">Note: Currently Unavailable. Please choose another format.</p>';
-            } else {
-                downloadVideo(link, fromate);
-            }
-        });
-
-        function downloadVideo(link, fromate) {
-            document.querySelector('.download-video').innerHTML = '<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+link+'&f='+fromate+'"></iframe>';
+        // Tambahkan kode untuk menampilkan catatan jika format yang dipilih tidak tersedia
+        if (fromate === 'mp4a' || fromate === '360' || fromate === '480') {
+            $('.download-video').html('<p class="note">Note: Currently Unavailable. Please choose another format.</p>');
+        } else {
+            // Tambahkan fitur download di sini
+            window.location.href = 'https://loader.to/api/button/?url=' + link + '&f=' + fromate;
         }
+    });
     </script>
+	
 	<script>
         // Fungsi untuk mengarahkan ke halaman yang sesuai berdasarkan status situs
         function redirectToPage() {
