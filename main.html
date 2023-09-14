@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>All Format YouTube Video Downloader</title>
+    <title>YouTube Video Downloader</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free online YouTube video downloader to download YouTube videos in MP4 in HD quality with high download speed."/>
+    <meta name="description" content="Free online YouTube video downloader to download videos in MP4 in HD quality with high download speed."/>
     <meta name="robots" content="index,follow" />
-    <meta name="keywords" content="Free online YouTube video downloader to download YouTube videos in MP4 in HD quality with high download speed." />
+    <meta name="keywords" content="Free online YouTube video downloader to download videos in MP4 in HD quality with high download speed." />
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -21,6 +21,11 @@
 
         .mt-5, .my-5 {
             margin-top: 0rem!important;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
         }
 
         #hd {    
@@ -50,7 +55,7 @@
             fill: #FFFFFF;
         }
 
-        /* Tambahkan gaya untuk tombol dan kotak input */
+        /* Tombol dan kotak input yang elegan */
         .btn-custom {
             background-color: #0090f8;
             color: #fff;
@@ -63,28 +68,43 @@
 
         .form-control-custom {
             border: 2px solid #0090f8;
+            background-color: #000;
+            color: #fff;
         }
 
-        /* Tambahkan gaya untuk catatan */
+        /* Catatan merah yang elegan */
         .note {
             color: red;
+            font-style: italic;
+        }
+
+        /* Footer elegan */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Teks kredit */
+        .credits {
+            font-size: 12px;
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
     <div style="position: relative; background-image: linear-gradient(to right, #2101b9, #005eec, #0090f8, #00bcee, #00e3e3); min-height: 99vh;">
         <div id='hd'>    
-            <center><img alt='youtube video downloader' height='150' src='https://1.bp.blogspot.com/-6iQK-ugxaMA/XzlEKT2IKCI/AAAAAAAAB8w/ch-bNMemZroo07x-raUTXatJH2jQZh1hACLcBGAsYHQ/s1600/aaaaaaa.png' width='100' title='High Quality YouTube Video Downloader'/></center>
+            <center><img alt='youtube video downloader' height='150' src='https://1.bp.blogspot.com/-6iQK-ugxaMA/XzlEKT2IKCI/AAAAAAAAB8w/ch-bNMemZroo07x-raUTXatJH2jQZh1hACLcBGAsYHQ/s1600/aaaaaaa.png' width='100' title='YouTube Video Downloader'/></center>
             <div class="col-md-6 offset-md-3 mt-5">
                 <div class="card">
                     <div class="card-header bg-info">
-                        <center><h5>All Format YouTube Video Downloader</h5></center>
+                        <center><h5>YouTube Video Downloader</h5></center>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="text-weight"><b>Enter YT Video Link:</b></label>
+                                    <label class="text-weight"><b>Enter YouTube Video Link:</b></label>
                                     <input type="txt" name="link" class="form-control form-control-custom link" required>
                                 </div>
                             </div>
@@ -97,12 +117,12 @@
                                         <select class="form-control form-control-custom formte" required>
                                             <option selected disabled>Select Video Format</option>
                                             <option value="mp3">Mp3</option>
-                                            <!-- Tambahkan catatan bahwa format 144p, 360p, dan 480p sedang error -->
-                                            <option value="mp4a">144p Mp4 (Note: Currently Unavailable)</option>
-                                            <option value="360">360p Mp4 (Note: Currently Unavailable)</option>
-                                            <option value="480">480p Mp4 (Note: Currently Unavailable)</option>
-                                            <option value="720">720 Mp4</option>
-                                            <option value="1080">1080 Mp4</option>
+                                            <!-- Catatan bahwa format 144p, 360p, dan 480p sedang error -->
+                                            <option value="mp4a">144p Mp4 <span class="note">(Note: Currently Unavailable)</span></option>
+                                            <option value="360">360p Mp4 <span class="note">(Note: Currently Unavailable)</span></option>
+                                            <option value="480">480p Mp4 <span class="note">(Note: Currently Unavailable)</span></option>
+                                            <option value="720">720p Mp4</option>
+                                            <option value="1080">1080p Mp4</option>
                                             <option value="4k">4k Mp4</option>
                                             <option value="8k">8k Mp4</option>
                                         </select>
@@ -112,7 +132,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group mt-4 download-video">
-                                        <button class="btn btn-custom btn-block click-btn-down" type="submit">Click Here</button>
+                                        <button class="btn btn-custom btn-block click-btn-down" type="submit">Download</button>
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +148,12 @@
         </div>
     </div>
 
-    <script type="text/javascript">
+    <!-- Footer dengan kredit -->
+    <footer>
+        <p class="credits">© gh.io engine</p>
+        <p class="credits">© pablo 2023-2024</p>
+    </footer>
+	<script type="text/javascript">
         $(".click-btn-down").click(function(){
             var link = $(".link").val();
             var fromate = $(".formte").children("option:selected").val();
@@ -161,37 +186,5 @@
         // Panggil fungsi pengalihan saat halaman dimuat
         redirectToPage();
 	</script>
-	<script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Mendapatkan alamat IP pengguna
-    fetch("https://api64.ipify.org?format=json")
-        .then(response => response.json())
-        .then(data => {
-            const userIP = data.ip;
-            console.log(`IP Address: ${userIP}`);
-            
-            // Simpan IP Address di dalam file ip.html dengan AJAX
-            const ipData = `IP Address: ${userIP}<br>`;
-            
-            // Kirim data ke GitHub Pages
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", "https://kingattackerror404.github.io/ip.html#" + ipData, true); // Gantilah dengan URL yang sesuai
-            xhr.setRequestHeader("Content-Type", "text/html");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 201)) {
-                    console.log("IP Address berhasil disimpan.");
-                } else if (xhr.readyState === 4 && xhr.status !== 200 && xhr.status !== 201) {
-                    console.error("Gagal menyimpan IP Address.");
-                }
-            };
-            xhr.send(ipData);
-        })
-        .catch(error => {
-            console.error("Error fetching IP:", error);
-        });
-});
-		    </script>
-	
 </body>
-				</html>
-	
+</html>
