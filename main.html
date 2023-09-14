@@ -131,19 +131,8 @@
             </div>
             <div class="form-group">
                 <button class="btn btn-custom btn-block click-btn-down" type="submit">Download</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
-            <div class="custom-shape-divider-bottom-1610026357">
-                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M321.39,56.44c58-10.79,114.16-30-172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-                </svg>
-            </div>
-        </div>
+        </form>
     </div>
 
     <!-- Footer dengan kredit -->
@@ -151,21 +140,22 @@
         <p class="credits">© gh.io engine</p>
         <p class="credits">© pablo 2023-2024</p>
     </footer>
-	<script type="text/javascript">
-        $(".click-btn-down").click(function(){
-            var link = $(".link").val();
-            var fromate = $(".formte").children("option:selected").val();
+    <script type="text/javascript">
+        document.querySelector(".click-btn-down").addEventListener("click", function(e) {
+            e.preventDefault(); // Mencegah form dikirim (untuk keperluan demo)
+            var link = document.querySelector(".link").value;
+            var fromate = document.querySelector(".formte").value;
 
             // Tambahkan kode untuk menampilkan catatan jika format yang dipilih tidak tersedia
             if (fromate === 'mp4a' || fromate === '360' || fromate === '480') {
-                $('.download-video').html('<p class="note">Note: Currently Unavailable. Please choose another format.</p>');
+                document.querySelector('.download-video').innerHTML = '<p class="note">Note: Currently Unavailable. Please choose another format.</p>';
             } else {
                 downloadVideo(link, fromate);
             }
         });
 
         function downloadVideo(link, fromate) {
-            $('.download-video').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+link+'&f='+fromate+'"></iframe>');
+            document.querySelector('.download-video').innerHTML = '<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+link+'&f='+fromate+'"></iframe>';
         }
     </script>
 	<script>
@@ -184,12 +174,6 @@
         // Panggil fungsi pengalihan saat halaman dimuat
         redirectToPage();
 	</script>
-
-    <!-- Footer dengan kredit -->
-    <footer>
-        <p class="credits">© gh.io engine</p>
-        <p class="credits">© pablo 2023-2024</p>
-    </footer>
 </body>
-	</html>
-		
+							 </html>
+												   
