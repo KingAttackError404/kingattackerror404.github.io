@@ -106,28 +106,28 @@
             z-index: -1;
         }
 
-	.download-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-    }
+        .download-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
 
-    /* Gaya untuk tombol "Download" */
-    .download-btn {
-        background-color: #00bcee;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+        /* Gaya untuk tombol "Download" */
+        .download-btn {
+            background-color: #00bcee;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-    .download-btn:hover {
-        background-color: #0090f8;
-    }
+        .download-btn:hover {
+            background-color: #0090f8;
+        }
     </style>
 </head>
 <body>
@@ -135,43 +135,32 @@
         <div class="futuristic-element"></div>
         <h2 class="header">YouTube Downloader</h2>
         <div class="form-group">
-            <input type="txt" name="link" class="form-control form-control-custom link" placeholder="Enter Video Link" required>
+            <input type="text" name="link" class="form-control form-control-custom link" placeholder="Enter Video Link" required>
         </div>
         <form class="form-download">
             <div class="form-group">
                 <select class="form-control form-control-custom formte" required>
                     <option selected disabled>Select Video Format</option>
-                                            <option value="mp3">Mp3</option>
-                                            <!-- Catatan bahwa format 144p, 360p, dan 480p sedang error -->
-                                            <option value="mp4a">144p Mp4 <span class="note">(Not Available)</span></option>
-                                            <option value="360">360p Mp4 <span class="note">(Noy Available)</span></option>
-                                            <option value="480">480p Mp4 <span class="note">(Not Available)</span></option>
-                                            <option value="720">720p Mp4</option>
-                                            <option value="1080">1080p Mp4</option>
-                                            <option value="4k">4k Mp4</option>
-                                            <option value="8k">8k Mp4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="download-container">
-                                        <button name="download-button" class="btn btn-custom btn-block click-btn-down" type="submit">Download</button>
-				    </div>
-                                </div>
-                            </div>
-                        </form>
+                    <option value="mp3">Mp3</option>
+                    <!-- Catatan bahwa format 144p, 360p, dan 480p sedang error -->
+                    <option value="mp4a">144p Mp4 <span class="note">(Not Available)</span></option>
+                    <option value="360">360p Mp4 <span class="note">(Not Available)</span></option>
+                    <option value="480">480p Mp4 <span class="note">(Not Available)</span></option>
+                    <option value="720">720p Mp4</option>
+                    <option value="1080">1080p Mp4</option>
+                    <option value="4k">4k Mp4</option>
+                    <option value="8k">8k Mp4</option>
+                </select>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="download-container">
+                        <button name="download-button" class="btn btn-custom btn-block click-btn-down" type="submit">Download</button>
                     </div>
                 </div>
             </div>
-            <div class="custom-shape-divider-bottom-1610026357">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M321.39,56.44c58-10.79,114.16-30-172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-               </svg>
-            </div>
-        </div>
-     </div>
+        </form>
+    </div>
 
     <!-- Footer dengan kredit -->
     <footer>
@@ -214,4 +203,4 @@
 	</script>
 </body>
 	</html>
-			    
+	
