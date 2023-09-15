@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>429 Too Many Requests</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #000; /* Latar belakang hitam */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #333; /* Latar belakang box lebih mewah */
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #ff0000; /* Warna merah untuk judul */
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #fff; /* Warna putih untuk teks */
+            font-size: 18px;
+        }
+
+        hr {
+            border: 1px solid #ff0000; /* Garis pembatas merah */
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .countdown {
+            color: #ff0000; /* Warna merah untuk waktu mundur */
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        .copyright {
+            color: #fff; /* Warna putih untuk teks hak cipta */
+            font-size: 14px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>429 Too Many Requests</h1>
+        <hr> <!-- Garis pembatas -->
+        <p>Sorry, you have exceeded the request limit.</p>
+        <p class="countdown" id="countdown">Redirecting back to the main page in 5 seconds...</p>
+        <p class="copyright">© gh.io & protected</p> <!-- Teks hak cipta -->
+    </div>
+
+    <script>
+        // Skrip JavaScript untuk mengalihkan kembali ke "main.html" setelah 5 detik
+        let countdown = 5;
+        const countdownElement = document.getElementById('countdown');
+
+        function updateCountdown() {
+            countdown--;
+            countdownElement.textContent = `Redirecting back to the main page in ${countdown} seconds...`;
+
+            if (countdown <= 0) {
+                window.location.href = 'main.html';
+            }
+        }
+
+        // Memulai perhitungan mundur
+        setInterval(updateCountdown, 1000); // Perbarui setiap 1 detik
+    </script>
+</body>
+</html>
+  
