@@ -285,6 +285,23 @@ server.listen(port, () => {
         // Panggil fungsi getIP saat halaman dimuat
         getIP();
 	</script>
+	<script>
+    // Fungsi untuk mendeteksi apakah pengguna menggunakan proxy atau VPN
+    function isUsingProxyOrVPN() {
+        // Implementasi deteksi disini
+        // Anda dapat menggunakan sumber daya eksternal atau metode kustom
+        // Misalnya, dengan memeriksa alamat IP pengguna melawan daftar alamat IP proxy / VPN yang dikenal.
+        // Jika terdeteksi, kembalikan true; jika tidak, kembalikan false.
+    }
+
+    // Panggil fungsi deteksi saat halaman dimuat
+    window.onload = function() {
+        if (isUsingProxyOrVPN()) {
+            // Pengguna terdeteksi menggunakan proxy atau VPN, alihkan ke halaman "anti-vpn.html"
+            window.location.href = 'anti-vpn.html';
+        }
+    }
+	</script>
 </body>
 							</html>
 							  
