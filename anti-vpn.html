@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Blocked Page</title>
+    <style>
+        body {
+            background-color: #000;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #fff;
+        }
+
+        .container {
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            padding: 60px;
+            max-width: 600px; /* Memperbesar lebar kotak dengan max-width */
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+
+        h1 {
+            color: #ff9900;
+            font-size: 28px;
+        }
+
+        p {
+            color: #ddd;
+            font-size: 18px;
+        }
+
+        .home-button {
+            background-color: #ff9900;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .home-button:hover {
+            background-color: #ffcc00;
+        }
+
+        .contact-us {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #999;
+        }
+
+        .user-ip {
+            color: #ff9900;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your IP Address is Blocked!</h1>
+        <p>We apologize, but we cannot accommodate the use of proxies or VPNs. Please turn off your VPN or proxy and try again.</p>
+
+        <p>Your IP Address: <span class="user-ip">[Loading...]</span></p>
+
+        <button class="home-button" onclick="goToHome()">Home</button>
+
+        <p class="contact-us">If you continue to experience issues even after disabling VPN or proxy, please <a href="mailto:pablobotz110@gmail.com">contact us via email</a>.</p>
+    </div>
+
+    <script>
+        // Function to redirect users back to "main.html"
+        function goToHome() {
+            window.location.href = 'main.html';
+        }
+
+        // Mengganti [Loading...] dengan alamat IP sebenarnya saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            var userIpSpan = document.querySelector('.user-ip');
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    userIpSpan.textContent = data.ip;
+                })
+                .catch(error => {
+                    console.error('Gagal mendapatkan alamat IP:', error);
+                });
+        });
+    </script>
+</body>
+</html>
