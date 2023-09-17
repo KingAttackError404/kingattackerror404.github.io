@@ -2,10 +2,111 @@
 <html>
 <head>
     <title>Log Alamat IP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        #logContent {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+
+        li:last-child {
+            margin-bottom: 0;
+        }
+
+        .ip-info {
+            font-weight: bold;
+        }
+
+        #clearButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #clearButton:hover {
+            background-color: #555;
+        }
+
+        #ipInfo {
+            display: none;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #deviceInfo {
+            font-weight: bold;
+        }
+
+        #toggleInfoButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #toggleInfoButton:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
 <body>
     <h1>Log Alamat IP</h1>
     <div id="logContent"></div>
+    <button id="clearButton">Clear IP</button>
+
+    <div id="ipInfo">
+        <h2>Informasi IP</h2>
+        <ul>
+            <li><span class="ip-info">IP:</span> <span id="ip"></span></li>
+            <li><span class="ip-info">Hostname:</span> <span id="hostname"></span></li>
+            <li><span class="ip-info">Kota:</span> <span id="city"></span></li>
+            <li><span class="ip-info">Negara:</span> <span id="country"></span></li>
+            <li><span class="ip-info">Lokasi:</span> <span id="loc"></span></li>
+            <li><span class="ip-info">Penyedia Layanan:</span> <span id="org"></span></li>
+            <li><span class="ip-info">Wilayah:</span> <span id="region"></span></li>
+            <li><span class="ip-info">Kode Pos:</span> <span id="postal"></span></li>
+            <li><span class="ip-info">Perangkat:</span> <span id="deviceInfo"></span></li>
+        </ul>
+        <button id="toggleInfoButton">Perkecil</button>
+    </div>
 
     <script>
         // Fungsi untuk memuat dan menampilkan daftar alamat IP dari localStorage
@@ -14,15 +115,15 @@
             if (ipList) {
                 ipList = JSON.parse(ipList);
                 var ipCount = {};
-                
+
                 // Hitung berapa kali masing-masing alamat IP muncul
                 ipList.forEach(function(ip) {
                     ipCount[ip] = (ipCount[ip] || 0) + 1;
                 });
-                
+
                 var logEntry = '<ul>';
                 for (var ip in ipCount) {
-                    logEntry += '<li>Alamat IP pengunjung: ' + ip + ' (' + ipCount[ip] + ' kali)</li>';
+                    logEntry += '<li><span class="ip-info">Alamat IP pengunjung:</span> ' + ip + ' (' + ipCount[ip] + ' kali)</li>';
                 }
                 logEntry += '</ul>';
                 document.getElementById('logContent').innerHTML = logEntry;
@@ -31,6 +132,53 @@
 
         // Panggil fungsi loadAndDisplayIPs saat halaman dimuat
         loadAndDisplayIPs();
+
+        // Fungsi untuk menghapus IP dari localStorage
+        document.getElementById('clearButton').addEventListener('click', function() {
+            localStorage.removeItem('ipList');
+            document.getElementById('logContent').innerHTML = '<p>Log Alamat IP telah dihapus.</p>';
+        });
+
+        // Fungsi untuk mengambil informasi IP menggunakan layanan ipinfo.io
+        function getIPInfo() {
+            fetch('https://ipinfo.io/json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('ip').textContent = data.ip;
+                    document.getElementById('hostname').textContent = data.hostname;
+                    document.getElementById('city').textContent = data.city;
+                    document.getElementById('country').textContent = data.country;
+                    document.getElementById('loc').textContent = data.loc;
+                    document.getElementById('org').textContent = data.org;
+                    document.getElementById('region').textContent = data.region;
+                    document.getElementById('postal').textContent = data.postal;
+                    document.getElementById('deviceInfo').textContent = getDeviceInfo();
+                    document.getElementById('ipInfo').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Gagal mendapatkan informasi IP:', error);
+                });
+        }
+
+        // Fungsi untuk mendapatkan informasi perangkat
+        function getDeviceInfo() {
+            var userAgent = navigator.userAgent;
+            return userAgent;
+        }
+
+        // Panggil fungsi getIPInfo saat tombol "Dapatkan Informasi" diklik
+        document.getElementById('toggleInfoButton').addEventListener('click', function() {
+            var ipInfo = document.getElementById('ipInfo');
+            var toggleButton = document.getElementById('toggleInfoButton');
+            if (ipInfo.style.display === 'block') {
+                ipInfo.style.display = 'none';
+                toggleButton.textContent = 'Dapatkan Informasi';
+            } else {
+                getIPInfo();
+                toggleButton.textContent = 'Perkecil';
+            }
+        });
     </script>
 </body>
-</html>
+    </html>
+    
