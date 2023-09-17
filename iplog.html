@@ -73,7 +73,7 @@
         }
 
         #toggleInfoButton {
-            display: block;
+            display: none;
             margin: 20px auto;
             padding: 10px 20px;
             background-color: #333;
@@ -85,12 +85,28 @@
         #toggleInfoButton:hover {
             background-color: #555;
         }
+
+        .infoButton {
+            margin-left: 10px;
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .infoButton:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
     <h1>Log Alamat IP</h1>
     <div id="logContent"></div>
     <button id="clearButton">Clear IP</button>
+
+    <!-- Tombol "Dapatkan Informasi" hanya muncul saat IP belum tercatat -->
+    <button id="toggleInfoButton" style="display: none;">Dapatkan Informasi</button>
 
     <div id="ipInfo">
         <h2>Informasi IP</h2>
@@ -105,7 +121,7 @@
             <li><span class="ip-info">Kode Pos:</span> <span id="postal"></span></li>
             <li><span class="ip-info">Perangkat:</span> <span id="deviceInfo"></span></li>
         </ul>
-        <button id="toggleInfoButton">Perkecil</button>
+        <button id="hideInfoButton">Perkecil</button>
     </div>
 
     <script>
@@ -123,10 +139,16 @@
 
                 var logEntry = '<ul>';
                 for (var ip in ipCount) {
-                    logEntry += '<li><span class="ip-info">Alamat IP pengunjung:</span> ' + ip + ' (' + ipCount[ip] + ' kali)</li>';
+                    var infoButton = ipList.length === 0 ? '' : '<button class="infoButton" data-ip="' + ip + '">Informasi</button>';
+                    logEntry += '<li><span class="ip-info">Alamat IP pengunjung:</span> ' + ip + ' (' + ipCount[ip] + ' kali) ' + infoButton + '</li>';
                 }
                 logEntry += '</ul>';
                 document.getElementById('logContent').innerHTML = logEntry;
+
+                // Periksa apakah sudah ada log, jika tidak, tampilkan tombol "Dapatkan Informasi"
+                if (ipList.length === 0) {
+                    document.getElementById('toggleInfoButton').style.display = 'block';
+                }
             }
         }
 
@@ -137,11 +159,13 @@
         document.getElementById('clearButton').addEventListener('click', function() {
             localStorage.removeItem('ipList');
             document.getElementById('logContent').innerHTML = '<p>Log Alamat IP telah dihapus.</p>';
+            document.getElementById('toggleInfoButton').style.display = 'block';
+            document.getElementById('ipInfo').style.display = 'none';
         });
 
         // Fungsi untuk mengambil informasi IP menggunakan layanan ipinfo.io
-        function getIPInfo() {
-            fetch('https://ipinfo.io/json')
+        function getIPInfo(ip) {
+            fetch('https://ipinfo.io/' + ip + '/json')
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('ip').textContent = data.ip;
@@ -153,17 +177,13 @@
                     document.getElementById('region').textContent = data.region;
                     document.getElementById('postal').textContent = data.postal;
                     document.getElementById('deviceInfo').textContent = getDeviceInfo();
+                    document.getElementById('toggleInfoButton').textContent = 'Perkecil';
+                    document.getElementById('toggleInfoButton').style.display = 'block';
                     document.getElementById('ipInfo').style.display = 'block';
                 })
                 .catch(error => {
                     console.error('Gagal mendapatkan informasi IP:', error);
                 });
-        }
-
-        // Fungsi untuk mendapatkan informasi perangkat
-        function getDeviceInfo() {
-            var userAgent = navigator.userAgent;
-            return userAgent;
         }
 
         // Panggil fungsi getIPInfo saat tombol "Dapatkan Informasi" diklik
@@ -178,7 +198,27 @@
                 toggleButton.textContent = 'Perkecil';
             }
         });
+
+        // Fungsi untuk mendapatkan informasi perangkat
+        function getDeviceInfo() {
+            var userAgent = navigator.userAgent;
+            return userAgent;
+        }
+
+        // Event listener untuk tombol "Informasi"
+        document.getElementById('logContent').addEventListener('click', function(event) {
+            if (event.target && event.target.classList.contains('infoButton')) {
+                var ip = event.target.getAttribute('data-ip');
+                getIPInfo(ip);
+            }
+        });
+
+        // Fungsi untuk menyembunyikan informasi IP saat tombol "Perkecil" diklik
+        document.getElementById('hideInfoButton').addEventListener('click', function() {
+            document.getElementById('ipInfo').style.display = 'none';
+            document.getElementById('toggleInfoButton').textContent = 'Dapatkan Informasi';
+        });
     </script>
 </body>
-    </html>
-    
+                    </html>
+                                                       
