@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Alamat IP</title>
+</head>
+<body>
+    <h1>Log Alamat IP</h1>
+    <div id="logContent"></div>
+
+    <script>
+        // Fungsi untuk memuat dan menampilkan alamat IP dari localStorage
+        function loadAndDisplayIP() {
+            var visitorIP = localStorage.getItem('visitorIP');
+            if (visitorIP) {
+                var logEntry = '<p>Alamat IP pengunjung: ' + visitorIP + '</p>';
+                document.getElementById('logContent').innerHTML = logEntry;
+            }
+        }
+
+        // Panggil fungsi loadAndDisplayIP saat halaman dimuat
+        loadAndDisplayIP();
+    </script>
+</body>
+</html>
