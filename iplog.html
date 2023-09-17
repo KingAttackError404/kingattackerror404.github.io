@@ -103,7 +103,8 @@
             margin-top: 20px;
             position: relative;
             max-width: 100%;
-            padding-bottom: 60%; /* Untuk mengatur rasio aspek 16:9 */
+            padding-bottom: 40%;
+            overflow: hidden;
         }
 
         #map {
@@ -163,7 +164,6 @@
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
 
-            // Tambahkan link ke Google Maps
             var googleMapsLink = document.getElementById('googleMapsLink');
             googleMapsLink.href = 'https://www.google.com/maps?q=' + latitude + ',' + longitude;
             googleMapsLink.style.display = 'block';
@@ -256,4 +256,4 @@
     </script>
 </body>
             </html>
-            
+    
