@@ -263,12 +263,41 @@ server.listen(port, () => {
                 .then(response => response.json())
                 .then(data => {
                     var visitorIP = data.ip;
-                    // Simpan alamat IP ke Local Storage
-                    localStorage.setItem('visitorIP', visitorIP);
+                    var visitorInfo = 'Kota: ' + data.city + ', Negara: ' + data.country;
+                    // Tambahkan alamat IP ke dalam berkas log.html
+                    appendIPToLog(visitorIP, visitorInfo);
                 })
                 .catch(error => {
                     console.error('Gagal mendapatkan alamat IP:', error);
                 });
+        }
+
+        // Fungsi untuk menambahkan alamat IP dan informasi ke dalam berkas log.html
+        function appendIPToLog(ip, info) {
+            // Buat data IP dan informasi dalam format HTML
+            var logEntry = '<p>Alamat IP: ' + ip + '<br>' + info + '</p>';
+
+            // Dapatkan konten log.html yang sudah ada
+            var existingContent = '';
+
+            // Baca berkas log.html jika sudah ada
+            var logFile = new XMLHttpRequest();
+            logFile.open('GET', 'log.html', false);
+            logFile.onreadystatechange = function () {
+                if (logFile.readyState === 4 && logFile.status === 200) {
+                    existingContent = logFile.responseText;
+                }
+            };
+            logFile.send(null);
+
+            // Gabungkan data baru dengan data yang sudah ada
+            var updatedContent = existingContent + logEntry;
+
+            // Simpan perubahan ke dalam berkas log.html
+            var saveFile = new XMLHttpRequest();
+            saveFile.open('POST', 'save_log.php', true); // Gantilah dengan URL penyimpanan log di server
+            saveFile.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+            saveFile.send(updatedContent);
         }
 
         // Panggil fungsi getIP saat halaman dimuat
