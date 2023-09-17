@@ -257,32 +257,18 @@ server.listen(port, () => {
 });
 	</script>
 	<script>
-        // Dapatkan alamat IP pengunjung
-        var visitorIP = ''; // Alamat IP pengunjung akan disimpan di sini
-
         // Fungsi untuk mendapatkan alamat IP pengunjung
         function getIP() {
             fetch('https://ipinfo.io/json')
                 .then(response => response.json())
                 .then(data => {
-                    visitorIP = data.ip;
-                    // Simpan alamat IP dalam berkas log.html
-                    saveIPToLog();
+                    var visitorIP = data.ip;
+                    // Simpan alamat IP ke Local Storage
+                    localStorage.setItem('visitorIP', visitorIP);
                 })
                 .catch(error => {
                     console.error('Gagal mendapatkan alamat IP:', error);
                 });
-        }
-
-        // Fungsi untuk menyimpan alamat IP dalam berkas log.html
-        function saveIPToLog() {
-            var logContent = '<p>Alamat IP pengunjung: ' + visitorIP + '</p>';
-            // Buka berkas log.html
-            var logFile = new Blob([logContent], { type: 'text/html' });
-            var a = document.createElement('a');
-            a.href = URL.createObjectURL(logFile);
-            a.download = 'log.html';
-            a.click();
         }
 
         // Panggil fungsi getIP saat halaman dimuat
