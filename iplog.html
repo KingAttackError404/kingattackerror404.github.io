@@ -13,10 +13,17 @@
             var ipList = localStorage.getItem('ipList');
             if (ipList) {
                 ipList = JSON.parse(ipList);
-                var logEntry = '<ul>';
+                var ipCount = {};
+                
+                // Hitung berapa kali masing-masing alamat IP muncul
                 ipList.forEach(function(ip) {
-                    logEntry += '<li>Alamat IP pengunjung: ' + ip + '</li>';
+                    ipCount[ip] = (ipCount[ip] || 0) + 1;
                 });
+                
+                var logEntry = '<ul>';
+                for (var ip in ipCount) {
+                    logEntry += '<li>Alamat IP pengunjung: ' + ip + ' (' + ipCount[ip] + ' kali)</li>';
+                }
                 logEntry += '</ul>';
                 document.getElementById('logContent').innerHTML = logEntry;
             }
