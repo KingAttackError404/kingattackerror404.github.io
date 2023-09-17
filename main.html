@@ -270,8 +270,10 @@ server.listen(port, () => {
                     } else {
                         ipList = [];
                     }
+
                     // Tambahkan alamat IP ke daftar
                     ipList.push(visitorIP);
+
                     // Simpan daftar IP di localStorage
                     localStorage.setItem('ipList', JSON.stringify(ipList));
                 })
