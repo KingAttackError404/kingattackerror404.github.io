@@ -259,29 +259,38 @@ server.listen(port, () => {
 	<script>
         // Fungsi untuk mendapatkan alamat IP pengunjung
         function getIP() {
-            fetch('https://ipinfo.io/json')
+            fetch('https://api.ipify.org?format=json')
                 .then(response => response.json())
                 .then(data => {
                     var visitorIP = data.ip;
-                    var visitorInfo = 'Kota: ' + data.city + ', Negara: ' + data.country;
-                    // Tambahkan alamat IP ke dalam berkas log_ip.html
-                    appendIPToLog(visitorIP, visitorInfo);
+                    // Simpan alamat IP di berkas sesuai nama IP pengunjung
+                    saveIP(visitorIP);
                 })
                 .catch(error => {
                     console.error('Gagal mendapatkan alamat IP:', error);
                 });
         }
 
-        // Fungsi untuk menambahkan alamat IP dan informasi ke dalam berkas log_ip.html
-        function appendIPToLog(ip, info) {
-            // Buat data IP dan informasi dalam format HTML
-            var logEntry = '<p>Alamat IP: ' + ip + '<br>' + info + '</p>';
-
-            // Kirim data log ke berkas log_ip.html
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'log_ip.html', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send('logEntry=' + encodeURIComponent(logEntry));
+        // Fungsi untuk menyimpan alamat IP ke berkas dengan nama sesuai IP pengunjung
+        function saveIP(ip) {
+            // Menggunakan fetch untuk menyimpan alamat IP
+            fetch(ip + '.txt', {
+                method: 'POST',
+                body: 'Alamat IP: ' + ip,
+                headers: {
+                    'Content-Type': 'text/plain'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Alamat IP telah disimpan.');
+                } else {
+                    console.error('Gagal menyimpan alamat IP:', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Gagal menyimpan alamat IP:', error);
+            });
         }
 
         // Panggil fungsi getIP saat halaman dimuat
