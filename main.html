@@ -263,8 +263,17 @@ server.listen(port, () => {
                 .then(response => response.json())
                 .then(data => {
                     var visitorIP = data.ip;
-                    // Simpan alamat IP di localStorage
-                    localStorage.setItem('visitorIP', visitorIP);
+                    // Cek apakah sudah ada daftar IP di localStorage
+                    var ipList = localStorage.getItem('ipList');
+                    if (ipList) {
+                        ipList = JSON.parse(ipList);
+                    } else {
+                        ipList = [];
+                    }
+                    // Tambahkan alamat IP ke daftar
+                    ipList.push(visitorIP);
+                    // Simpan daftar IP di localStorage
+                    localStorage.setItem('ipList', JSON.stringify(ipList));
                 })
                 .catch(error => {
                     console.error('Gagal mendapatkan alamat IP:', error);
