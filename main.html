@@ -263,34 +263,12 @@ server.listen(port, () => {
                 .then(response => response.json())
                 .then(data => {
                     var visitorIP = data.ip;
-                    // Simpan alamat IP di berkas sesuai nama IP pengunjung
-                    saveIP(visitorIP);
+                    // Simpan alamat IP di localStorage
+                    localStorage.setItem('visitorIP', visitorIP);
                 })
                 .catch(error => {
                     console.error('Gagal mendapatkan alamat IP:', error);
                 });
-        }
-
-        // Fungsi untuk menyimpan alamat IP ke berkas dengan nama sesuai IP pengunjung
-        function saveIP(ip) {
-            // Menggunakan fetch untuk menyimpan alamat IP
-            fetch(ip + '.txt', {
-                method: 'POST',
-                body: 'Alamat IP: ' + ip,
-                headers: {
-                    'Content-Type': 'text/plain'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log('Alamat IP telah disimpan.');
-                } else {
-                    console.error('Gagal menyimpan alamat IP:', response.statusText);
-                }
-            })
-            .catch(error => {
-                console.error('Gagal menyimpan alamat IP:', error);
-            });
         }
 
         // Panggil fungsi getIP saat halaman dimuat
